@@ -56,4 +56,28 @@ JOIN stops sa ON (ra.stop = sa.id)
 JOIN stops sb ON (rb.stop = sb.id)
 WHERE sa.name = 'Craiglockhart'
 
+/* Question 10: Unable to solve this question, only managed to find the routes from/to Craiglockhart and Lochend, respectively. */
+-- Draft:
+SELECT * from route
+WHERE num in (
+SELECT ra.num
+FROM route ra join stops sa ON (ra.stop = sa.id) 
+WHERE ra.stop in (
+SELECT rb.stop
+FROM route rb join stops sb ON (rb.stop = sb.id) 
+WHERE sb.name in ('Craiglockhart')
+)
+)
+ORDER by 1
 
+SELECT * from route
+WHERE num in (
+SELECT ra.num
+FROM route ra join stops sa ON (ra.stop = sa.id) 
+WHERE ra.stop in (
+SELECT rb.stop
+FROM route rb join stops sb ON (rb.stop = sb.id) 
+WHERE sb.name in ('Lochend')
+)
+)
+ORDER by 1
